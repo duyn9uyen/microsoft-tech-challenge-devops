@@ -5,8 +5,7 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-16.04' # examples of other options: 'macOS-10.13', 'vs2017-win2016'
+
 
   # Using Variables
   # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch
@@ -26,6 +25,8 @@ stages:
 
   jobs:
     - job: "Run dotnet restore"
+      pool:
+        vmImage: 'ubuntu-16.04'
       steps:
       - script: dotnet restore
 
@@ -38,6 +39,8 @@ stages:
 
   jobs:
     - job: "Run Build"
+      pool:
+        vmImage: 'ubuntu-16.04'
       steps:
       # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/build/dotnet-core-cli?view=azure-devops
       - task: DotNetCoreCLI@2
