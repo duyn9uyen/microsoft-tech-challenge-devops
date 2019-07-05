@@ -8,10 +8,10 @@ trigger:
   # Using Variables
   # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
-  vmImage: 'ubuntu-16.04'
+  solution: NewsAPI.sln
+  buildPlatform: Any CPU
+  buildConfiguration: Release
+  vmImage: ubuntu-16.04
 
 stages:
 
