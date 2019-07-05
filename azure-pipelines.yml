@@ -34,11 +34,11 @@ stages:
 ################################################################################
 
 - stage: Build
-  displayName: "Build Project"
+  displayName: Build Project
 
   jobs:
     - job: 
       pool:
         vmImage: '$(vmImage)'
       steps:
-      - script: dotnet restore NewsAPI.sln
+      - script: dotnet build NewsAPI.sln
