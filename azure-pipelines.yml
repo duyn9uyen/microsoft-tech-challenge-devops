@@ -23,7 +23,7 @@ stages:
   displayName: Restore Dependencies
 
   jobs:
-    - job: Job_dotnet_restore
+    - job:
       pool:
         vmImage: '$(vmImage)'
       steps:
@@ -37,15 +37,8 @@ stages:
   displayName: "Build Project"
 
   jobs:
-    - job: Job_Run_Build
+    - job: NewsAPI.Web.csproj
       pool:
         vmImage: '$(vmImage)'
       steps:
-      # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/build/dotnet-core-cli?view=azure-devops
-      - task: DotNetCoreCLI@2
-        displayName: Build
-        inputs:
-          command: build
-          projects: '$(solution)'
-          arguments: '$(buildConfiguration)'
-
+      - script: dotnet restore NewsAPI.sln
