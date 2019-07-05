@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/dnguyen0298/dnguyen/_apis/build/status/duyn9uyen.microsoft-tech-challenge-devops?branchName=master)](https://dev.azure.com/dnguyen0298/dnguyen/_build/latest?definitionId=1&branchName=master)
+
 # Assignment 1: News API
 
 This assignment is designed to allow the developer to become familiar with the tools necessary for development of an ASP.NET Core WebAPI solution.
