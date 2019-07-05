@@ -27,7 +27,7 @@ stages:
       pool:
         vmImage: '$(vmImage)'
       steps:
-      - script: dotnet restore '$(solution)''
+      - script: dotnet restore '$(solution)'
 
 ################################################################################
 # Build
