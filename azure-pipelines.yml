@@ -5,14 +5,13 @@
 trigger:
 - master
 
-
-
   # Using Variables
   # https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables?view=azure-devops&tabs=yaml%2Cbatch
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  vmImage: 'ubuntu-16.04'
 
 stages:
 
@@ -20,13 +19,13 @@ stages:
 # Restore
 ################################################################################
 
-- stage: "Restore"
-  displayName: "Restore Dependencies"
+- stage: Restore
+  displayName: Restore Dependencies
 
   jobs:
-    - job: "Job_dotnet_restore"
+    - job: Job_dotnet_restore
       pool:
-        vmImage: 'ubuntu-16.04'
+        vmImage: '$(vmImage)'
       steps:
       - script: dotnet restore NewsAPI.sln
 
@@ -34,19 +33,19 @@ stages:
 # Build
 ################################################################################
 
-- stage: "Build"
+- stage: Build
   displayName: "Build Project"
 
   jobs:
-    - job: "Job_Run_Build"
+    - job: Job_Run_Build
       pool:
-        vmImage: 'ubuntu-16.04'
+        vmImage: '$(vmImage)'
       steps:
       # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/build/dotnet-core-cli?view=azure-devops
       - task: DotNetCoreCLI@2
         displayName: Build
         inputs:
           command: build
-          projects: 'NewsAPI.sln'
+          projects: '$(solution)'
           arguments: '$(buildConfiguration)'
 
