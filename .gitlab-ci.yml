@@ -1,0 +1,56 @@
+################################################################################
+# Pipeline Attributes
+################################################################################
+
+# Define stage order of execution
+stages:
+  - build
+  - deploy
+  - invoke
+  - verify
+  - cleanup
+
+
+################################################################################
+# Job Definitions (jobs within the same stage will be executed in parallel)
+################################################################################
+
+# Define a reusable job fragment
+Build:
+  stage: build
+  image: microsoft/dotnet
+  script:
+    - dotnet build NewsAPI.sln
+  artifacts:
+      paths:
+        - NewsAPI.Models/bin/Debug/netcoreapp2.0/NewsAPI.Models.dll
+        - NewsAPI.DataContext/bin/Debug/netcoreapp2.0/NewsAPI.DataContext.dll
+        - bin/Debug/netcoreapp2.0/NewsAPI.Web.dll
+
+
+# Define a reusable job fragment
+Deploy:
+  stage: deploy
+  image: microsoft/azure-cli
+  script:
+    - echo Deploying artifact
+
+
+# Trigger the deployed artifact(s) in the runtime environment
+Verify:
+  stage: verify
+  image: microsoft/dotnet
+  dependencies: []
+  script:
+    - echo Verifying deployment
+
+
+# Remove the file that was created as part of the verification
+Clean:
+  stage: cleanup
+  image: microsoft/azure-cli
+  dependencies: []
+  script:
+    - echo Cleaning up
+  when: always
+  allow_failure: true

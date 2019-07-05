@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    working_directory: ~/challenge
+    steps: 
+      - checkout
+      - run:
+          name: Restore packages
+          command:
+            dotnet restore NewsAPI.sln
+      - run:
+          name: Build App
+          command:
+            dotnet build NewsAPI.sln
+      # - run:
+      #     name: Run App
+      #     command: 
+      #       dotnet run NewsAPI.sln
