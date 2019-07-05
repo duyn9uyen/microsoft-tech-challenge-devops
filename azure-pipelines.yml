@@ -47,6 +47,6 @@ stages:
         displayName: Build
         inputs:
           command: build
-          projects: '**/*.csproj'
+          projects: 'NewsAPI.sln'
           arguments: '$(buildConfiguration)'
 
