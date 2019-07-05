@@ -37,7 +37,7 @@ stages:
   displayName: "Build Project"
 
   jobs:
-    - job: NewsAPI.Web.csproj
+    - job: 
       pool:
         vmImage: '$(vmImage)'
       steps:
